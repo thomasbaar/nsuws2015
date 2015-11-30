@@ -1,0 +1,44 @@
+grammar ru.nsu.xtext.DbDsl with org.eclipse.xtext.common.Terminals
+
+generate dbDsl "http://www.nsu.ru/xtext/DbDsl"
+
+DbModel:
+	dbs+=Database+;
+	
+Database:
+	'database' name=ID ';' 
+	// grammar works also fine without Import-Rule
+	// its purpose is just to make the scoping more handy
+	imports+=Import*
+	tables+=Table*;
+	
+Import:
+	//note that 'importedNamespace' is a hard-wired feature-name in Xtext
+	'myimport' importedNamespace=QualifiedNameWithWildcard ';'
+;	
+	
+Table:
+	'create' 'table' name=ID '{'
+	columns+=Column*
+	fks+=ForeignKeyDecl*
+	'}'
+;	
+
+Column:
+	name=ID type=BaseType ';'
+;
+
+BaseType: 'int' | 'varchar';
+
+ForeignKeyDecl:
+	'foreign' 'key' fk=[Column] 
+	'references' referredcol=[Column|QualifiedName] ';'
+	;
+	
+QualifiedName: 
+	ID ('.' ID)*	
+;
+
+QualifiedNameWithWildcard:
+	QualifiedName '.*'?  
+;
