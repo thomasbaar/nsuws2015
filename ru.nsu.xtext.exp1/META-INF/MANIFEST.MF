@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ru.nsu.xtext.exp1
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: ru.nsu.xtext.exp1; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: ru.nsu.xtext.exp1,
+ ru.nsu.xtext.exp1.services,
+ ru.nsu.xtext.exp1.exp1Dsl,
+ ru.nsu.xtext.exp1.exp1Dsl.impl,
+ ru.nsu.xtext.exp1.exp1Dsl.util,
+ ru.nsu.xtext.exp1.serializer,
+ ru.nsu.xtext.exp1.parser.antlr,
+ ru.nsu.xtext.exp1.parser.antlr.internal,
+ ru.nsu.xtext.exp1.validation,
+ ru.nsu.xtext.exp1.scoping,
+ ru.nsu.xtext.exp1.generator,
+ ru.nsu.xtext.exp1.formatting

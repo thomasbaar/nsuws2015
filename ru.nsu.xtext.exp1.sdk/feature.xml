@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="ru.nsu.xtext.exp1.sdk"
+	label="Exp1Dsl SDK Feature "
+	version="1.0.0.qualifier">
+	<plugin
+			id="ru.nsu.xtext.exp1"
+			download-size="0"
+			install-size="0"
+			version="0.0.0"
+			unpack="false"/>
+	<plugin
+			id="ru.nsu.xtext.exp1.ui"
+			download-size="0"
+			install-size="0"
+			version="0.0.0"
+			unpack="false"/>
+</feature>

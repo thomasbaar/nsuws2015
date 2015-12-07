@@ -1,0 +1,54 @@
+grammar ru.nsu.xtext.exp1.Exp1Dsl with org.eclipse.xtext.common.Terminals
+
+generate exp1Dsl "http://www.nsu.ru/xtext/exp1/Exp1Dsl"
+
+Model: exps+=Expression*;
+	
+Expression:
+	V0Exp |	V1Exp |	V2Exp |	V3Exp | VarDecl;
+
+V0Exp:	"version0" exp=Expression0 ';';
+	
+V1Exp:	"version1" exp=Expression1 ';';
+V2Exp:	"version2" exp2=Expression2 ';';
+V3Exp:	"version3" exp3=Expression3 ';';
+
+VarDecl: 'var' name=ID '=' val=Expression3;
+	
+// non-recursive, right-associativity
+Expression0 :
+	left=TerminalExpression0 (op='+' right=Expression0)?;
+TerminalExpression0:
+	{INTLiteral0} value=INT ;
+
+
+// recursive, without *; no associativity problem due to?
+// precedence is given by rule hierarchy
+Expression1 :
+	left=FactorExpression1 (op='+' right=FactorExpression1)?;
+FactorExpression1 returns Expression1:
+	left=TerminalExpression1 (op='*' right=TerminalExpression1)?;	
+TerminalExpression1 returns Expression1:
+	'(' Expression1 ')' |
+	{INTLiteral1} value=INT ;
+
+// with precedence and expr-chunks
+Expression2 :
+	left=FactorExpression2 (op='+' right=Expression2)?;
+FactorExpression2 returns Expression2:
+	left=TerminalExpression2 (op='*' right=FactorExpression2)?;	
+TerminalExpression2 returns Expression2:
+	'(' Expression2 ')' |
+	{INTLiteral2} value=INT ;
+
+
+// version with rewrite action, left associativity	
+Expression3 :
+	FactorExpression3 ({Expression3.left=current} op='+' right=FactorExpression3)*;
+FactorExpression3 returns Expression3:
+	TerminalExpression3 ({FactorExpression3.left=current} op='*' right=TerminalExpression3)*;	
+TerminalExpression3 returns Expression3:
+	'(' Expression3 ')' |
+	{INTLiteral3} value=INT ;
+	
+	
