@@ -3,11 +3,34 @@
  */
 package ru.nsu.xtext.ui.outline
 
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
+import ru.nsu.xtext.dbDsl.DbModel
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import ru.nsu.xtext.dbDsl.Table
+
 /**
  * Customization of the default outline structure.
  *
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
 class DbDslOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
+	def void _createChildren(DocumentRootNode outlineNode, DbModel model) {
+		model.dbs.forEach[
+			db |
+			createNode(outlineNode, db);
+		]
+	}
+	
+	def void _createChildren(IOutlineNode outlineNode, Table table) {
+		table.columns.forEach[
+			col |
+			createNode(outlineNode, col);
+		]
+		// this is new; also needs a corresponding label provider
+		table.fks.forEach[
+			fk |
+			createNode(outlineNode, fk);
+		]
+	}
 	
 }

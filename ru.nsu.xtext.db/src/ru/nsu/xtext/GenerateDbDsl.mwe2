@@ -15,9 +15,11 @@ Workflow {
     bean = StandaloneSetup {
     	scanClassPath = true
     	platformUri = "${runtimeProject}/.."
-    	// The following two lines can be removed, if Xbase is not used.
-    	registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
-    	registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+//    	// The following two lines can be removed, if Xbase is not used.
+//    	registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
+//    	registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+    	registerGeneratedEPackage = "ru.nsu.xtext.exp1.exp1Dsl.Exp1DslPackage"
+    	registerGenModelFile = "platform:/resource/ru.nsu.xtext.exp1/model/generated/Exp1Dsl.genmodel"
     }
     
     component = DirectoryCleaner {

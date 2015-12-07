@@ -2,6 +2,8 @@ grammar ru.nsu.xtext.DbDsl with org.eclipse.xtext.common.Terminals
 
 generate dbDsl "http://www.nsu.ru/xtext/DbDsl"
 
+import "http://www.nsu.ru/xtext/exp1/Exp1Dsl" as exp1
+
 DbModel:
 	dbs+=Database+;
 	
@@ -25,7 +27,7 @@ Table:
 ;	
 
 Column:
-	name=ID type=BaseType ';'
+	name=ID type=BaseType ('=' init=[exp1::VarDecl])? ';'
 ;
 
 BaseType: 'int' | 'varchar';

@@ -4,6 +4,9 @@
 package ru.nsu.xtext.ui.labeling
 
 import com.google.inject.Inject
+import ru.nsu.xtext.dbDsl.Column
+import ru.nsu.xtext.dbDsl.Table
+import ru.nsu.xtext.dbDsl.ForeignKeyDecl
 
 /**
  * Provides labels for EObjects.
@@ -17,13 +20,22 @@ class DbDslLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelP
 		super(delegate);
 	}
 
-	// Labels and icons can be computed like this:
+	// multiple dispatch methods: same method name with different 
+	// argument type is possible
 	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+	def text(Column col) {
+		col.name + ":" + col.type
+	}
+
+	def text(ForeignKeyDecl fkd) {
+		fkd.fk.name + "->" + fkd.referredcol.name
+	}
+
+	def image(Table ele) {
+		'Table.gif'
+	}
+
+	def image(Column ele) {
+		'Column.gif'
+	}
 }

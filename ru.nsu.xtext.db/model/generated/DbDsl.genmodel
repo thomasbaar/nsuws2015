@@ -4,7 +4,7 @@
     editorDirectory="/ru.nsu.xtext.db.editor/src" modelPluginID="ru.nsu.xtext.db"
     forceOverwrite="true" modelName="DbDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="ru.nsu.xtext.db.edit"
-    editorPluginID="ru.nsu.xtext.db.editor" runtimeVersion="2.11">
+    editorPluginID="ru.nsu.xtext.db.editor" runtimeVersion="2.11" usedGenPackages="platform:/resource/ru.nsu.xtext.exp1/model/generated/Exp1Dsl.genmodel#//exp1Dsl">
   <genPackages prefix="DbDsl" basePackage="ru.nsu.xtext" disposableProviderFactory="true"
       fileExtensions="db" ecorePackage="DbDsl.ecore#/">
     <genClasses ecoreClass="DbDsl.ecore#//DbModel">
@@ -26,6 +26,7 @@
     <genClasses ecoreClass="DbDsl.ecore#//Column">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbDsl.ecore#//Column/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DbDsl.ecore#//Column/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DbDsl.ecore#//Column/init"/>
     </genClasses>
     <genClasses ecoreClass="DbDsl.ecore#//ForeignKeyDecl">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DbDsl.ecore#//ForeignKeyDecl/fk"/>
